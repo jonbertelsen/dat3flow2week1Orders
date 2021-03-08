@@ -118,7 +118,7 @@ public class Tester {
         OrderLine ol2 = OrderLineFacade.createOrderLine(p2, o1, 2);
         OrderLine ol3 = OrderLineFacade.createOrderLine(p2, o2, 3);
         
-        // Find all orders for customer c1
+        // Find all orders 
         System.out.println("\nFind all orders, orderlines and total sum of orders ************");
         List<Customer> allCustomers = CustomerFacade.getAllCustomers();
         for (Customer custObj: allCustomers){
@@ -131,7 +131,7 @@ public class Tester {
                             olObj.getQuantity(), olObj.getProduct().getName());
                 }
                 System.out.printf("Total order price: %.2f\n", OrderFacade.getOrderSum(orderObj.getId()) );
-            }   
+            }
         }
     }
     
