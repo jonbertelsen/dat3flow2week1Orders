@@ -1,5 +1,7 @@
 facade/OrderFacade.class
 entities/Product.class
+entities/OrderLineId.class
+entities/OrderLineId_.class
 entities/Orders_.class
 facade/ProductFacade.class
 entities/OrderLine.class

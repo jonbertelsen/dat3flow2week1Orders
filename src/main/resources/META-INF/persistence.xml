@@ -6,6 +6,7 @@
     <class>entities.Product</class>
     <class>entities.Orders</class>
     <class>entities.OrderLine</class>
+    <class>entities.OrderLineId</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/startcode"/>
       <property name="javax.persistence.jdbc.user" value="dev"/>

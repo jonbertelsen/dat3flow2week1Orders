@@ -30,7 +30,7 @@ public class Orders implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer order_id;
     
     @ManyToOne()
     private Customer customer;
@@ -42,7 +42,7 @@ public class Orders implements Serializable {
     private Date orderDate;
 
     public Integer getId() {
-        return id;
+        return order_id;
     }
 
     public Orders() {
@@ -50,13 +50,13 @@ public class Orders implements Serializable {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.order_id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (order_id != null ? order_id.hashCode() : 0);
         return hash;
     }
 
@@ -67,7 +67,7 @@ public class Orders implements Serializable {
             return false;
         }
         Orders other = (Orders) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.order_id == null && other.order_id != null) || (this.order_id != null && !this.order_id.equals(other.order_id))) {
             return false;
         }
         return true;
@@ -75,7 +75,7 @@ public class Orders implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Orders[ id=" + id + " ]";
+        return "entities.Orders[ id=" + order_id + " ]";
     }
 
     public Customer getCustomer() {

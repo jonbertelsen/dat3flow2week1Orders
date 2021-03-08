@@ -59,7 +59,7 @@ public class Tester {
         }
        
         // Get all customers
-        System.out.println("Get all customers ************");
+        System.out.println("\nGet all customers ************");
         List<Customer> customers = CustomerFacade.getAllCustomers();  
         if (customers.size() > 0){
             for(Customer c: customers){
@@ -70,12 +70,12 @@ public class Tester {
         }
         
         // Create a Product
-        System.out.println("Create a product ************");
+        System.out.println("\nCreate a product ************");
         Product p1 = ProductFacade.createProduct("Inov8 Trailtalon 250", "Fed trailsko",1195.00);
         Product p2 = ProductFacade.createProduct("Vivobarefoot SG", "Flad trailsko",895.00);
         
         // Find a product
-        System.out.println("Find a product ************");
+        System.out.println("\nFind a product ************");
         try {
             ProductFacade.findProductById(p1.getId());
             System.out.println("Product with id = " + p1.getId() + " is found");
@@ -90,7 +90,7 @@ public class Tester {
         }
         
         // Get all products
-        System.out.println("Get all products ************");
+        System.out.println("\nGet all products ************");
         List<Product> products = ProductFacade.getAllProducts(); 
         
         for(Product p: products){
@@ -98,7 +98,7 @@ public class Tester {
         }
         
         // Create an order
-        System.out.println("Add an order ************");
+        System.out.println("\nAdd an order ************");
         Orders o1 = OrderFacade.createOrder(new Orders());
         Orders o2 = OrderFacade.createOrder(new Orders());
         Customer c1 = CustomerFacade.createCustomer("Alfons Aaberg", "a@cpbusiness.dk");
@@ -113,16 +113,13 @@ public class Tester {
                 c2.getOrders().get(0).getId());
         
         // Create an orderline
-        System.out.println("Add an orderline ************");
-        OrderLine ol1 = OrderLineFacade.createOrderLine(p1,1);
-        OrderLine ol2 = OrderLineFacade.createOrderLine(p2,2);
-        OrderLine ol3 = OrderLineFacade.createOrderLine(p2,3);
-        OrderFacade.addOrderLine(o1, ol1);
-        OrderFacade.addOrderLine(o1, ol2);
-        OrderFacade.addOrderLine(o2, ol3);
+        System.out.println("\nAdd an orderline ************");
+        OrderLine ol1 = OrderLineFacade.createOrderLine(p1,o1, 1);
+        OrderLine ol2 = OrderLineFacade.createOrderLine(p2, o1, 2);
+        OrderLine ol3 = OrderLineFacade.createOrderLine(p2, o2, 3);
         
         // Find all orders for customer c1
-        System.out.println("Find all orders, orderlines and total sum of orders ************");
+        System.out.println("\nFind all orders, orderlines and total sum of orders ************");
         List<Customer> allCustomers = CustomerFacade.getAllCustomers();
         for (Customer custObj: allCustomers){
             List<Orders> allOrders = CustomerFacade.getAllOrdersByCustomerID(custObj.getId());

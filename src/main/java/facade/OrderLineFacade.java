@@ -6,6 +6,7 @@
 package facade;
 
 import entities.OrderLine;
+import entities.Orders;
 import entities.Product;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,9 +20,9 @@ public class OrderLineFacade {
     
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
     
-    public static OrderLine createOrderLine(Product p, int quantity){
+    public static OrderLine createOrderLine(Product p, Orders o, int quantity){
         EntityManager em = emf.createEntityManager();
-        OrderLine ol = new OrderLine(p, quantity);
+        OrderLine ol = new OrderLine(p, o, quantity);
         try {
            em.getTransaction().begin();
               em.persist(ol);

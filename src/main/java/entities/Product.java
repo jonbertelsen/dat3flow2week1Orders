@@ -26,7 +26,7 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer product_id;
     private String name;
     private String description;
     private double price;
@@ -44,17 +44,17 @@ public class Product implements Serializable {
     }
           
     public Integer getId() {
-        return id;
+        return product_id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.product_id = id;
     }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (product_id != null ? product_id.hashCode() : 0);
         return hash;
     }
 
@@ -65,7 +65,7 @@ public class Product implements Serializable {
             return false;
         }
         Product other = (Product) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.product_id == null && other.product_id != null) || (this.product_id != null && !this.product_id.equals(other.product_id))) {
             return false;
         }
         return true;
@@ -73,7 +73,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Product[ id=" + id + " ]";
+        return "entities.Product[ id=" + product_id + " ]";
     }
 
     public String getName() {

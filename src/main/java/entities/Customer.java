@@ -26,7 +26,7 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer customer_id;
     private String name;
     private String email;
     
@@ -42,11 +42,11 @@ public class Customer implements Serializable {
     }
 
     public Integer getId() {
-        return id;
+        return customer_id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.customer_id = id;
     }
 
     public String getName() {

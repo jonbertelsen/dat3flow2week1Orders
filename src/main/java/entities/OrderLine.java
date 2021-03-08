@@ -6,11 +6,12 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.NamedQuery;
 
 /**
@@ -22,57 +23,59 @@ import javax.persistence.NamedQuery;
 public class OrderLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+     @EmbeddedId
+    private OrderLineId id;
     private int quantity;
     
     @ManyToOne() // Owning side (foreign key)
+    @MapsId("product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne()   // Owning side (foreign key)
+    @MapsId("order_id")
+    @JoinColumn(name = "order_id")
     private Orders order;
     
     public OrderLine() {
     }
     
-    public OrderLine(Product product, int quantity) {
-        this.product = product;
+    public OrderLine(Product product, Orders order, int quantity) {
         this.quantity = quantity;
-    }
-    
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.id = new OrderLineId(product.getId(), order.getId());
+        this.product = product;
+        this.order = order;
+        order.addOrderline(this);
+        
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OrderLine)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        OrderLine other = (OrderLine) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OrderLine other = (OrderLine) obj;
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "facade.OrderLine[ id=" + id + " ]";
-    }
 
     public int getQuantity() {
         return quantity;

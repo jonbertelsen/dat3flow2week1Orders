@@ -67,7 +67,7 @@ public class CustomerFacade {
    
    public static List<Orders> getAllOrdersByCustomerID(int customerID) throws EntityNotFoundException {
         EntityManager em = emf.createEntityManager();
-        TypedQuery query = em.createQuery("SELECT o FROM Orders o JOIN o.customer c WHERE o.customer.id = :id", Orders.class);
+        TypedQuery query = em.createQuery("SELECT o FROM Orders o JOIN o.customer c WHERE o.customer.customer_id = :id", Orders.class);
         query.setParameter("id", customerID);
         
         List<Orders> orders = query.getResultList();
